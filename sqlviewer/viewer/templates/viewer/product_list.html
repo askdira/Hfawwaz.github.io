@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Produk SQL</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 2rem;
+        background: #f6f8fa;
+      }
+      .card {
+        background: white;
+        border-radius: 10px;
+        padding: 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 0.7rem;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      th {
+        background: #111827;
+        color: white;
+      }
+      .empty {
+        color: #6b7280;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Daftar Data Produk (MySQL)</h1>
+      <p>Data di bawah ini dibaca langsung dari tabel <code>viewer_product</code>.</p>
+      {% if products %}
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nama</th>
+            <th>Kategori</th>
+            <th>Harga</th>
+            <th>Stok</th>
+            <th>Dibuat</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in products %}
+          <tr>
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.category }}</td>
+            <td>Rp {{ product.price }}</td>
+            <td>{{ product.stock }}</td>
+            <td>{{ product.created_at }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p class="empty">Belum ada data. Tambahkan data lewat admin Django.</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
